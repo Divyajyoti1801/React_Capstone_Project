@@ -3,8 +3,13 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectCartTotal } from "../../store/cart/cart.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
-import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
-import { FormContainer, PaymentFormContainer } from "./payment-form.style";
+import { BUTTON_TYPE_CLASSES } from "../button/button.component";
+
+import {
+  FormContainer,
+  PaymentButton,
+  PaymentFormContainer,
+} from "./payment-form.style";
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -57,12 +62,12 @@ const PaymentForm = () => {
       <FormContainer onSubmit={paymentHandler}>
         <h2>Credit Card Payment</h2>
         <CardElement />
-        <Button
+        <PaymentButton
           disabled={isProcessingPayment}
           buttonType={BUTTON_TYPE_CLASSES.inverted}
         >
           Pay Now
-        </Button>
+        </PaymentButton>
       </FormContainer>
     </PaymentFormContainer>
   );
