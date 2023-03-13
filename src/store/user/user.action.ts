@@ -9,7 +9,7 @@ import {
   createAction,
   withMatcher,
 } from "../../utils/reducer/reducer.util";
-import { USER_ACTION_TYPES } from "./user.types.js";
+import { USER_ACTION_TYPES } from "./user.types";
 
 export type CheckUserSession = Action<USER_ACTION_TYPES.CHECK_USER_SESSION>;
 
@@ -78,7 +78,7 @@ export const emailSignInStart = withMatcher(
 );
 
 export const signInSuccess = withMatcher(
-  (user: UserData): SignInSuccess =>
+  (user: UserData & { id: string }): SignInSuccess =>
     createAction(USER_ACTION_TYPES.SIGN_IN_SUCCESS, user)
 );
 
