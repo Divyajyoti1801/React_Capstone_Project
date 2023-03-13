@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   emailSignInStart,
@@ -6,7 +6,7 @@ import {
 } from "../../store/user/user.action";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
-import "./sign-in-form.style.scss";
+import { ButtonsContainer, SignInContainer } from "./sign-in-form.style";
 const defaultFields = {
   email: "",
   password: "",
@@ -25,31 +25,22 @@ const SignInForm = () => {
     dispatch(googleSignInStart());
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch (error) {
-      switch (error.code) {
-        case "auth/wrong-password":
-          alert("Incorrect Password For Email");
-          break;
-        case "auth/user-not-found":
-          alert("No User Associated With This Email");
-          break;
-        default:
-          console.log(error);
-      }
+      console.log("Sign-in Failed", error as Error);
     }
   };
   return (
-    <div className="sign-in-container">
+    <SignInContainer>
       <h2>Already have an Account?</h2>
       <span>Sign-in with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -69,7 +60,7 @@ const SignInForm = () => {
           name="password"
           value={password}
         />
-        <div className="buttons-container">
+        <ButtonsContainer>
           <Button type="submit">Sign In</Button>
           <Button
             type="button"
@@ -78,9 +69,9 @@ const SignInForm = () => {
           >
             Google sign in
           </Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };
 
