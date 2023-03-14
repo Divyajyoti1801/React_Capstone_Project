@@ -1,4 +1,10 @@
-.checkout-container {
+import styled from "styled-components";
+
+export const HeaderBlock = styled.div``;
+
+export const CheckoutHeader = styled.div``;
+
+export const CheckoutContainer = styled.div`
   width: 55%;
   min-height: 90vh;
   display: flex;
@@ -6,14 +12,14 @@
   align-items: center;
   margin: 50px auto 0;
 
-  .checkout-header {
+  ${CheckoutHeader} {
     width: 100%;
     padding: 10px 0;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid darkgrey;
 
-    .header-block {
+    ${HeaderBlock} {
       text-transform: capitalize;
       width: 23%;
 
@@ -22,10 +28,10 @@
       }
     }
   }
+`;
 
-  .total {
-    margin-top: 30px;
-    margin-left: auto;
-    font-size: 36px;
-  }
-}
+export const Total = styled.span`
+  margin-top: 30px;
+  margin-left: auto;
+  font-size: 36px;
+`;

@@ -10,7 +10,7 @@ import {
   ButtonSpinner,
   GoogleSignInButton,
   InvertedButton,
-} from "./button.styles.jsx";
+} from "./button.styles";
 
 export enum BUTTON_TYPE_CLASSES {
   base = "base",
